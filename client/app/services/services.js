@@ -24,7 +24,7 @@ angular.module('shortly.services', [])
     return $http({
       method: 'POST',
       url: '/api/links',
-      data: link
+      data: {url: link}
     })
     .then(function (response) {
       console.log('SUCCESSFUL POST for addOne: ' + JSON.stringify(response));
@@ -34,10 +34,12 @@ angular.module('shortly.services', [])
       console.error('ERROR POST for addOne: ' + error);
     });
   };
+
   return {
     getAll: getAll,
     addOne: addOne
   };
+
 })
 .factory('Auth', function ($http, $location, $window) {
   // Don't touch this Auth service!!!
