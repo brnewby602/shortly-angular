@@ -151,3 +151,7 @@ input[type=url]:focus {
   clear: both;
 }
 
+.creator {
+  width: 20px;
+}
+
