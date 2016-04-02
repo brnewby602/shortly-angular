@@ -1,14 +1,17 @@
 <div id='container' ng-controller='LinksController'>
   <!-- Your html here -->
   <div class="links">
+    <input type="search" ng-model='filter' />
     <div class="link" ng-repeat='link in data.links track by $index'>
       <img src='/assets/redirect_icon.png'/>
         <div class='info'>
           <div class='visits'><span class='count'>{{link.visits}}</span>Visits</div>
           <div class='title'>{{link.title}}</div>
           <div class='original'>{{link.url}}</div>
-          <a href='{{baseUrl}}/{{code}}'>{{link.baseUrl}}/{{link.code}}</a>
+          <a href='{{link.baseUrl}}/{{link.code}}'>{{link.baseUrl}}/{{link.code}}</a>
         </div>
     </div>
+
+    <div>{{filter}}</div>
 </div>
 
