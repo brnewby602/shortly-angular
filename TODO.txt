@@ -1,0 +1,18 @@
+TODO:
+
+1) when POST is successful for new shortened URL, should go to /links
+
+
+
+ADDED:
+
+1. added a .otherwise in the routeProvider in app.js
+    maybe handles all non specified route paths??
+
+
+2. for TODO #1, added a location.path in shorten.js to change views.
+  need to add error handling for addOne
+
+3. Broke authentication, need to look at the otherwise to see why that
+   seems to be stopping auth from happening
+

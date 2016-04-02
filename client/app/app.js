@@ -24,6 +24,10 @@ angular.module('shortly', [
       templateUrl: 'app/shorten/shorten.html',
       controller: 'ShortenController',
       authenticate: true
+    })
+    .otherwise( {
+      authenticate: true,
+      redirectTo: '/links'
     });
     // Your code here
 
@@ -59,6 +63,7 @@ angular.module('shortly', [
 
   console.log('******************IM IN HERE**************');
   $rootScope.$on('$routeChangeStart', function (evt, next, current) {
+    console.log('*********** next.route = ' + JSON.stringify(next.$$route));
     if (next.$$route && next.$$route.authenticate && !Auth.isAuth()) {
       $location.path('/signin');
     }

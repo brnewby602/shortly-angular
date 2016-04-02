@@ -12,9 +12,12 @@ module.exports = {
   allLinks: function (req, res, next) {
     findAllLinks({})
       .then(function (links) {
+        console.log('INSIDE allLinks success');
         res.json(links);
       })
       .fail(function (error) {
+        console.log('INSIDE allLinks failure ', error);
+
         next(error);
       });
   },
@@ -56,6 +59,7 @@ module.exports = {
   },
 
   navToLink: function (req, res, next) {
+    console.log('req.params = ' + JSON.stringify(req.params));
     findLink({code: req.params.code})
       .then(function (link) {
         if (!link) {

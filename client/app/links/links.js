@@ -4,7 +4,7 @@ angular.module('shortly.links', [])
   // Your code here
   $scope.data = {};
 
-  console.log("inside LinksController");
+  console.log('inside LinksController');
   Links.getAll()
     .then(function(links) {
       $scope.data.links = links;
