@@ -17,15 +17,19 @@ angular.module('shortly.services', [])
     });
   };
 
-  var addOne = function() {
+  var addOne = function(link) {
     console.log('getting One');
     return $http({
       method: 'POST',
       url: '/api/links',
-      data: links
+      data: link
     })
-    .then(function (links) {
-      console.log(links);
+    .then(function (response) {
+      console.log('SUCCESSFUL POST for addOne: ' + JSON.stringify(response));
+      return response;
+    })
+    .catch(function(error) {
+      console.error('ERROR POST for addOne: ' + error);
     });
   };
   return {

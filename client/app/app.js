@@ -18,6 +18,14 @@ angular.module('shortly', [
     .when('/', {
       templateUrl: 'app/links/links.html', 
       controller: 'LinksController'
+    })
+    .when('/links', {
+      templateUrl: 'app/links/links.html',
+      controller: 'LinksController'
+    })
+    .when('/shorten', {
+      templateUrl: 'app/shorten/shorten.html',
+      controller: 'ShortenController'
     });
     // Your code here
 
