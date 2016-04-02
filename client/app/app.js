@@ -3,10 +3,16 @@ angular.module('shortly', [
   'shortly.links',
   'shortly.shorten',
   'shortly.auth',
-  'ngRoute'
+  'ngRoute',
+  'ngMessages'
 ])
 .config(function ($routeProvider, $httpProvider) {
   $routeProvider
+    .when('/', {
+      authenticate: true,
+      templateUrl: 'app/links/links.html',
+      controller: 'LinksController'
+    })
     .when('/signin', {
       templateUrl: 'app/auth/signin.html',
       controller: 'AuthController'
@@ -28,7 +34,8 @@ angular.module('shortly', [
     .otherwise( {
       authenticate: true,
       redirectTo: '/links'
-    });
+    }); 
+    
     // Your code here
 
     // We add our $httpInterceptor into the array
@@ -63,8 +70,12 @@ angular.module('shortly', [
 
   console.log('******************IM IN HERE**************');
   $rootScope.$on('$routeChangeStart', function (evt, next, current) {
-    console.log('*********** next.route = ' + JSON.stringify(next.$$route));
+
+    console.log('next.$$route = ' + JSON.stringify(next.$$route));
+    console.log('next.$$route.authenticate = ' + next.$$route.authenticate);
+    console.log('isAuth = ' + !Auth.isAuth());
     if (next.$$route && next.$$route.authenticate && !Auth.isAuth()) {
+      console.log('*********** MUST SIGN IN********************');
       $location.path('/signin');
     }
   });

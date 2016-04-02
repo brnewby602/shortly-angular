@@ -1,13 +1,16 @@
 <div id='container' class='creator'>
 <!-- Your code here -->
 
-  <form ng-submit="addLink()" ng-controller="ShortenController">
-      <input class='text' ng-model='link.url' type='text'>
+  <form ng-submit="addLink()" name='shortenForm' novalidate>
+      <input class='text' ng-model='link.url' type='url' name='urlText' required>
       <input type='submit' value='Shorten'>
+      <div class='message' ng-messages='shortenForm.urlText.$error'>
+
+        <div class='message' ng-message='required'>The url is required!</div>
+        <div class='message' ng-message='url'>You have entered an invalid URL.</div>
+      </div>
   </form>
   <img class='spinner' src='/assets/spiffygif_46x46.gif'>
-  <div class='message'></div>
-
 </div>
 
 
