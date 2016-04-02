@@ -1,8 +1,8 @@
 <div id='container' ng-controller='LinksController'>
   <!-- Your html here -->
+  <input type="search" ng-model='q' placeholder='filter urls...' />
   <div class="links">
-    <input type="search" ng-model='filter' />
-    <div class="link" ng-repeat='link in data.links track by $index'>
+    <div class="link" ng-repeat='link in data.links | filter:q as results'>
       <img src='/assets/redirect_icon.png'/>
         <div class='info'>
           <div class='visits'><span class='count'>{{link.visits}}</span>Visits</div>

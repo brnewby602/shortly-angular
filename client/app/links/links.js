@@ -18,4 +18,16 @@ angular.module('shortly.links', [])
     .catch(function(error) {
       console.error('Error retrieving getAll: ' + error);
     });
+
+
+  // $scope.canShow = function(index) {
+
+  //   console.log('index = ' + index);
+  //   // needs to return boolean
+  //   if (filter === '') {
+  //     return true;
+  //   }
+
+  //   // $scope
+  // };
 });
