@@ -1,4 +1,4 @@
-angular.module('shortly.shorten', [])
+angular.module('shortly.shorten', ['ngMessages'])
 
 .controller('ShortenController', function ($scope, $location, Links) {
   // Your code here
@@ -6,9 +6,16 @@ angular.module('shortly.shorten', [])
 
   $scope.addLink = function() {
 
-    Links.addOne($scope.link.url);
+    console.log('valid: ' + $scope.shortenForm.$valid);
 
-    $location.path('links');
+    if ($scope.shortenForm.$valid) {
+      Links.addOne($scope.link.url, function() {
+        $location.path('links');        
+      });
+
+      // $location.path('links');
+    }
+  
 
   };
 });

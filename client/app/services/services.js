@@ -17,7 +17,7 @@ angular.module('shortly.services', [])
     });
   };
 
-  var addOne = function(link) {
+  var addOne = function(link, callback) {
 
     console.log('getting One: ' + JSON.stringify(link));
 
@@ -28,6 +28,7 @@ angular.module('shortly.services', [])
     })
     .then(function (response) {
       console.log('SUCCESSFUL POST for addOne: ' + JSON.stringify(response));
+      callback();
       return response;
     })
     .catch(function(error) {
