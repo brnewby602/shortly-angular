@@ -27,6 +27,11 @@ h1 {
   list-style: none;
 }
 
+.navigation .logout {
+  float: right;
+}
+
+
 .navigation li {
   float: left;
 }
