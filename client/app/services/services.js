@@ -9,7 +9,6 @@ angular.module('shortly.services', [])
       url: '/api/links',
     })
     .then(function (response) {
-      console.log('links found: ', response.data);
       return response.data;
     })
     .catch(function(error) {
@@ -27,7 +26,6 @@ angular.module('shortly.services', [])
       data: {url: link}
     })
     .then(function (response) {
-      console.log('SUCCESSFUL POST for addOne: ' + JSON.stringify(response));
       callback();
       return response;
     })
@@ -80,7 +78,6 @@ angular.module('shortly.services', [])
     $window.localStorage.removeItem('com.shortly');
     $location.path('/signin');
   };
-
 
   return {
     signin: signin,

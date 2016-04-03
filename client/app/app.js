@@ -31,6 +31,11 @@ angular.module('shortly', [
       controller: 'ShortenController',
       authenticate: true
     })
+    .when('/logout', {
+      templateUrl: 'logout',
+      controller: 'AuthController',
+      logout: true
+    })
     .otherwise( {
       authenticate: true,
       redirectTo: '/links'
@@ -59,7 +64,7 @@ angular.module('shortly', [
   };
   return attach;
 })
-.run(function ($rootScope, $location, Auth) {
+.run(function ($rootScope, $location, Links, Auth) {
   // here inside the run phase of angular, our services and controllers have
   // just been registered and our app is ready however, we want to make sure
   // the user is authorized we listen for when angular is trying to change
@@ -68,15 +73,14 @@ angular.module('shortly', [
   // user or hasn't expired if it's not valid, we then redirect back to
   // signin/signup
 
-  console.log('******************IM IN HERE**************');
   $rootScope.$on('$routeChangeStart', function (evt, next, current) {
 
-    console.log('next.$$route = ' + JSON.stringify(next.$$route));
-    console.log('next.$$route.authenticate = ' + next.$$route.authenticate);
-    console.log('isAuth = ' + !Auth.isAuth());
     if (next.$$route && next.$$route.authenticate && !Auth.isAuth()) {
-      console.log('*********** MUST SIGN IN********************');
       $location.path('/signin');
+    }
+
+    if ( next.$$route && next.$$route.logout) {
+      Auth.signout();
     }
   });
 });
